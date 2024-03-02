@@ -1,19 +1,15 @@
 'use client'
 
-import PageHeader from '@/components/page-header'
-import useTranslation from '@/hooks/useTranslation'
-import ModalCard from '@/pages/notifications/ModalCard'
-import ToastCard from '@/pages/notifications/ToastCard'
+import PageHeader from '@core/components/page-header'
+import useTranslation from '@core/hooks/useTranslation'
 
 function NotificationPage() {
-  const t = useTranslation()
-  return (
-    <>
-      <PageHeader title={t('pages.notifications.title')} description={t('pages.notifications.description')} />
-      <ModalCard />
-      <ToastCard />
-    </>
-  )
+    const t = useTranslation()
+    return (
+        <>
+            <PageHeader title={t('pages.notifications.title')} description={t('pages.notifications.description')} />
+        </>
+    )
 }
 
 export default NotificationPage
