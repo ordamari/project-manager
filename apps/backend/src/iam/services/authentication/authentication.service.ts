@@ -51,6 +51,8 @@ export class AuthenticationService {
 
     async refreshTokens(request: Request): Promise<SignInData> {
         const refreshToken = this.extractRefreshTokenFromRequest(request)
+        console.log({ refreshToken })
+
         if (!refreshToken) {
             throw new UnauthorizedException('Refresh token is missing')
         }

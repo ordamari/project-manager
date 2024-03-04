@@ -20,9 +20,16 @@
         "paths": {
             "@/*": ["./*"],
             "@core/*": ["./@core/*"],
-            "@auth/*": ["./features/auth/*"]
+            "@auth/*": ["./features/auth/*"],
+            "@company/*": ["./features/company/*"]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts",
+        "features/auth/schemas/sign-in/.schema.ts"
+    ],
     "exclude": ["node_modules"]
 }
