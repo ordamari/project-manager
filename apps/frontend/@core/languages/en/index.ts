@@ -11,6 +11,12 @@ const en = {
             'sign-in-description': 'Sign in to your account now',
             'dont-have-account': 'Don’t have an account?',
         },
+        company: {
+            title: 'Company',
+            description: 'Witch company do you want to work with?',
+            'want-create': 'Want to create a new company?',
+            'click-here': 'Click here',
+        },
         languages: {
             he: 'Hebrew',
             en: 'English',

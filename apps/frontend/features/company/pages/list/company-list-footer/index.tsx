@@ -1,15 +1,14 @@
 import useTranslation from '@/@core/hooks/useTranslation'
 import Link from 'next/link'
 
-function NewAccount() {
+function CompanyListFooter() {
     const t = useTranslation()
     return (
         <div className='border-t w-full pt-4'>
             <span>
-                {t('auth.dont-have-account')} <Link href='/auth/sign-up'>{t('auth.sign-up')}</Link>
+                {t('company.want-create')} <Link href='/company/create'>{t('company.click-here')}</Link>
             </span>
         </div>
     )
 }
-
-export default NewAccount
+export default CompanyListFooter

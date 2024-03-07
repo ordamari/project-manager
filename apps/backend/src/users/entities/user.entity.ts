@@ -1,5 +1,6 @@
 import { Company } from 'src/companies/entities/company.entity'
-import { Column, Entity, JoinTable, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+import { Member } from 'src/companies/entities/member.entity'
+import { Column, Entity, JoinTable, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity()
 export class User {
@@ -11,4 +12,8 @@ export class User {
 
     @Column()
     password: string
+
+    @JoinTable()
+    @OneToMany(() => Member, member => member.user, { cascade: true })
+    members: Member[]
 }

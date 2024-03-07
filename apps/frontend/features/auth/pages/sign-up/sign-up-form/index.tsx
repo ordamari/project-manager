@@ -16,7 +16,7 @@ import { Button } from '@/@core/components/ui/button'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 
-function SignUpForm() {
+function SignInForm() {
     const signUp = useAuthStore(state => state.signUp)
     const t = useTranslation()
     const router = useRouter()
@@ -29,9 +29,9 @@ function SignUpForm() {
         resolver: zodResolver(signUpSchema),
     })
 
-    async function onSubmit(signUpData: SignUpSchema) {
+    async function onSubmit(signInData: SignUpSchema) {
         try {
-            await signUp(signUpData)
+            await signUp(signInData)
             router.push('/auth/sign-in')
         } catch (error) {
             form.reset()
@@ -67,10 +67,10 @@ function SignUpForm() {
                         </FormItem>
                     )}
                 />
-                <Button type='submit'>{t('auth.sign-up')}</Button>
+                <Button type='submit'>{t('auth.sign-in')}</Button>
             </form>
         </Form>
     )
 }
 
-export default SignUpForm
+export default SignInForm

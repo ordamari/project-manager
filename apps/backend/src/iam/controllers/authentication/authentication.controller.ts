@@ -1,4 +1,5 @@
 import { Body, Controller, HttpCode, HttpStatus, Post, Req, Res } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
 import { Request, Response } from 'express'
 import { Auth } from 'src/iam/decorators/auth.decorator'
 import { SignInDto } from 'src/iam/dto/sign-in.dto'
@@ -6,6 +7,7 @@ import { SignUpDto } from 'src/iam/dto/sign-up.dto'
 import { AuthType } from 'src/iam/enums/auth-type.enum'
 import { AuthenticationService } from 'src/iam/services/authentication/authentication.service'
 
+@ApiTags('authentication')
 @Auth(AuthType.None)
 @Controller('authentication')
 export class AuthenticationController {

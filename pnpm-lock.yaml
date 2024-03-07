@@ -38,6 +38,7 @@ importers:
       '@nestjs/mapped-types': '*'
       '@nestjs/platform-express': ^10.0.0
       '@nestjs/schematics': ^10.0.0
+      '@nestjs/swagger': ^7.3.0
       '@nestjs/testing': ^10.0.0
       '@nestjs/typeorm': ^10.0.2
       '@types/bcrypt': ^5.0.2
@@ -62,6 +63,7 @@ importers:
       rxjs: ^7.8.1
       source-map-support: ^0.5.21
       supertest: ^6.3.3
+      swagger-ui-express: ^5.0.0
       ts-jest: ^29.1.0
       ts-loader: ^9.4.3
       ts-node: ^10.9.1
@@ -76,6 +78,7 @@ importers:
       '@nestjs/jwt': 10.2.0_@nestjs+common@10.3.3
       '@nestjs/mapped-types': 2.0.5_mmvbgkab7mi2vj4e6acwtywxyq
       '@nestjs/platform-express': 10.3.3_dh3vy25y4u4axkklolxhc7ud74
+      '@nestjs/swagger': 7.3.0_wnch5elwzzn6rogzjnbm7h273e
       '@nestjs/typeorm': 10.0.2_ubazlcerx564aze3mvhjtiue6m
       bcrypt: 5.1.1
       class-transformer: 0.5.1
@@ -85,6 +88,7 @@ importers:
       pg: 8.11.3
       reflect-metadata: 0.2.1
       rxjs: 7.8.1
+      swagger-ui-express: 5.0.0_express@4.18.2
       typeorm: 0.3.20_n7nscllopqdin5hn6uy77erdvu
       zod: 3.22.4
     devDependencies:
@@ -115,6 +119,7 @@ importers:
     specifiers:
       '@faker-js/faker': ^8.4.0
       '@hookform/resolvers': ^3.3.4
+      '@radix-ui/react-avatar': ^1.0.4
       '@radix-ui/react-dialog': ^1.0.5
       '@radix-ui/react-direction': ^1.0.1
       '@radix-ui/react-dropdown-menu': ^2.0.6
@@ -150,6 +155,7 @@ importers:
     dependencies:
       '@faker-js/faker': 8.4.1
       '@hookform/resolvers': 3.3.4_react-hook-form@7.50.1
+      '@radix-ui/react-avatar': 1.0.4_gwzpedo46diqntqtlo7532evpm
       '@radix-ui/react-dialog': 1.0.5_gwzpedo46diqntqtlo7532evpm
       '@radix-ui/react-direction': 1.0.1_wx27iibiwvar32bjr4b4ke4wna
       '@radix-ui/react-dropdown-menu': 2.0.6_gwzpedo46diqntqtlo7532evpm
@@ -2134,6 +2140,10 @@ packages:
       - supports-color
     dev: false
 
+  /@microsoft/tsdoc/0.14.2:
+    resolution: {integrity: sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==}
+    dev: false
+
   /@nestjs/cli/10.3.2:
     resolution: {integrity: sha512-aWmD1GLluWrbuC4a1Iz/XBk5p74Uj6nIVZj6Ov03JbTfgtWqGFLtXuMetvzMiHxfrHehx/myt2iKAPRhKdZvTg==}
     engines: {node: '>= 16.14'}
@@ -2315,6 +2325,36 @@ packages:
     transitivePeerDependencies:
       - chokidar
     dev: true
+
+  /@nestjs/swagger/7.3.0_wnch5elwzzn6rogzjnbm7h273e:
+    resolution: {integrity: sha512-zLkfKZ+ioYsIZ3dfv7Bj8YHnZMNAGWFUmx2ZDuLp/fBE4P8BSjB7hldzDueFXsmwaPL90v7lgyd82P+s7KME1Q==}
+    peerDependencies:
+      '@fastify/static': ^6.0.0 || ^7.0.0
+      '@nestjs/common': ^9.0.0 || ^10.0.0
+      '@nestjs/core': ^9.0.0 || ^10.0.0
+      class-transformer: '*'
+      class-validator: '*'
+      reflect-metadata: ^0.1.12 || ^0.2.0
+    peerDependenciesMeta:
+      '@fastify/static':
+        optional: true
+      class-transformer:
+        optional: true
+      class-validator:
+        optional: true
+    dependencies:
+      '@microsoft/tsdoc': 0.14.2
+      '@nestjs/common': 10.3.3_sjlgdw6sxl55j5qxfoihpjka6a
+      '@nestjs/core': 10.3.3_weox2mjin5yu6iq3zzpy5xknme
+      '@nestjs/mapped-types': 2.0.5_mmvbgkab7mi2vj4e6acwtywxyq
+      class-transformer: 0.5.1
+      class-validator: 0.14.1
+      js-yaml: 4.1.0
+      lodash: 4.17.21
+      path-to-regexp: 3.2.0
+      reflect-metadata: 0.2.1
+      swagger-ui-dist: 5.11.2
+    dev: false
 
   /@nestjs/testing/10.3.3_j7t7b7y6nby2hredhzby6eqtxu:
     resolution: {integrity: sha512-kX20GfjAImL5grd/i69uD/x7sc00BaqGcP2dRG3ilqshQUuy5DOmspLCr3a2C8xmVU7kzK4spT0oTxhe6WcCAA==}
@@ -2504,6 +2544,30 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.9
       '@radix-ui/react-primitive': 1.0.3_gwzpedo46diqntqtlo7532evpm
+      '@types/react': 18.2.57
+      '@types/react-dom': 18.2.19
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@radix-ui/react-avatar/1.0.4_gwzpedo46diqntqtlo7532evpm:
+    resolution: {integrity: sha512-kVK2K7ZD3wwj3qhle0ElXhOjbezIgyl2hVvgwfIdexL3rN6zJmy5AqqIf+D31lxVppdzV8CjAfZ6PklkmInZLw==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.9
+      '@radix-ui/react-context': 1.0.1_wx27iibiwvar32bjr4b4ke4wna
+      '@radix-ui/react-primitive': 1.0.3_gwzpedo46diqntqtlo7532evpm
+      '@radix-ui/react-use-callback-ref': 1.0.1_wx27iibiwvar32bjr4b4ke4wna
+      '@radix-ui/react-use-layout-effect': 1.0.1_wx27iibiwvar32bjr4b4ke4wna
       '@types/react': 18.2.57
       '@types/react-dom': 18.2.19
       react: 18.2.0
@@ -4064,7 +4128,6 @@ packages:
 
   /argparse/2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
-    dev: true
 
   /aria-hidden/1.2.3:
     resolution: {integrity: sha512-xcLxITLe2HYa1cnYnwCjkOO1PqUHQpozB8x9AR0OgWN2woOBi5kSDVxKfd0b7sb1hw5qFeJhXm9H1nu3xSfLeQ==}
@@ -7410,7 +7473,6 @@ packages:
     hasBin: true
     dependencies:
       argparse: 2.0.1
-    dev: true
 
   /jsesc/0.5.0:
     resolution: {integrity: sha512-uZz5UnB7u4T9LvwmFqXii7pZSouaRPorGs5who1Ip7VO0wxanFvBL7GkM6dTHlgX+jhBApRetaWpnDabOeTcnA==}
@@ -9435,6 +9497,24 @@ packages:
       csso: 5.0.5
       picocolors: 1.0.0
     dev: true
+
+  /swagger-ui-dist/5.11.2:
+    resolution: {integrity: sha512-jQG0cRgJNMZ7aCoiFofnoojeSaa/+KgWaDlfgs8QN+BXoGMpxeMVY5OEnjq4OlNvF3yjftO8c9GRAgcHlO+u7A==}
+    dev: false
+
+  /swagger-ui-dist/5.11.9:
+    resolution: {integrity: sha512-e1x1x92wwjBWTjM+P9aH6qRurjFol/y5eCN0U2pK/nrS5mKxZuTsZUqdYya1W+JMom8fbw6/X8Ymp99lHRjBfw==}
+    dev: false
+
+  /swagger-ui-express/5.0.0_express@4.18.2:
+    resolution: {integrity: sha512-tsU9tODVvhyfkNSvf03E6FAk+z+5cU3lXAzMy6Pv4av2Gt2xA0++fogwC4qo19XuFf6hdxevPuVCSKFuMHJhFA==}
+    engines: {node: '>= v0.10.32'}
+    peerDependencies:
+      express: '>=4.0.0 || >=5.0.0-beta'
+    dependencies:
+      express: 4.18.2
+      swagger-ui-dist: 5.11.9
+    dev: false
 
   /symbol-observable/4.0.0:
     resolution: {integrity: sha512-b19dMThMV4HVFynSAM1++gBHAbk2Tc/osgLIBZMKsyqh34jb2e8Os7T6ZW/Bt3pJFdBTd2JwAnAAEQV7rSNvcQ==}

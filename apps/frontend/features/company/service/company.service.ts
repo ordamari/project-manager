@@ -2,7 +2,7 @@ import http from '@core/lib/http'
 import { Company } from '../types/company.type'
 
 class CompanyService {
-    private static ENDPOINT = '/company'
+    private static ENDPOINT = '/companies'
 
     public static async get(): Promise<Company[]> {
         const companies = await http.get(this.ENDPOINT)
