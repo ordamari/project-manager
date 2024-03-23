@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { IamModule } from './iam/iam.module'
 import { ConfigModule } from '@nestjs/config'
 import { CompaniesModule } from './companies/companies.module';
+import { MessagesModule } from './messages/messages.module';
 
 @Module({
     imports: [
@@ -24,6 +25,7 @@ import { CompaniesModule } from './companies/companies.module';
         UsersModule,
         IamModule,
         CompaniesModule,
+        MessagesModule,
     ],
     controllers: [AppController],
     providers: [AppService],

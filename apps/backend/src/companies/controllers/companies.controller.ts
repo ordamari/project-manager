@@ -13,6 +13,8 @@ export class CompaniesController {
 
     @Post()
     create(@Body() createCompanyDto: CreateCompanyDto, @ActiveUser() user: ActiveUserData) {
+        console.log('createCompanyDto', createCompanyDto)
+
         return this.companiesService.create(createCompanyDto, user)
     }
 
@@ -22,12 +24,12 @@ export class CompaniesController {
     }
 
     @Get(':id')
-    findOne(@Param('id') id: number) {
-        return this.companiesService.findOne(id)
+    findOne(@Param('id') id: string, @ActiveUser() user: ActiveUserData) {
+        return this.companiesService.findOne(Number(id), user)
     }
 
     @Delete(':id')
-    remove(@Param('id') id: number) {
-        return this.companiesService.remove(id)
+    remove(@Param('id') id: string) {
+        return this.companiesService.remove(Number(id))
     }
 }

@@ -2,10 +2,10 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@core/components/ui/card'
 import useTranslation from '@core/hooks/useTranslation'
-import useCompanyStore from '@/features/company/store/company.store'
+import useCompanyStore from '@company/store/company.store'
 import useOnLoad from '@core/hooks/useOnLoad'
-import CompanyList from '@/features/company/pages/list/company-list'
-import CompanyListFooter from '@/features/company/pages/list/company-list-footer'
+import CompanyList from '@company/components/company-list'
+import CompanyListFooter from '@company/components/company-list-footer'
 
 function CompaniesPage() {
     const loadCompanies = useCompanyStore(state => state.load)
@@ -19,7 +19,10 @@ function CompaniesPage() {
                 <CardDescription>{t('company.description')}</CardDescription>
             </CardHeader>
             <CardContent>
-                <CompanyList />
+                <CompanyList
+                    className='gap-4 max-h-[400px] overflow-auto'
+                    itemClassName='gap-4 bg-primary-foreground p-4 rounded-md text-xl'
+                />
             </CardContent>
             <CardFooter>
                 <CompanyListFooter />

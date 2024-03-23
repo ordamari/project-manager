@@ -9,6 +9,7 @@ type AuthStore = {
     signIn: (signInData: SignInSchema) => Promise<void>
     refreshTokens: () => Promise<void>
     signUp: (signUpData: SignUpSchema) => Promise<void>
+    setLastUsedCompanyId: (companyId: number) => void
 }
 
 const useAuthStore = create<AuthStore>()(set => ({
@@ -23,6 +24,19 @@ const useAuthStore = create<AuthStore>()(set => ({
     },
     signUp: async signUpData => {
         await AuthService.signUp(signUpData)
+    },
+    setLastUsedCompanyId: companyId => {
+        set(prev => {
+            if (prev.loggedInUser) {
+                return {
+                    loggedInUser: {
+                        ...prev.loggedInUser,
+                        lastUsedCompanyId: companyId,
+                    },
+                }
+            }
+            return prev
+        })
     },
 }))
 

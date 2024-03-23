@@ -3,25 +3,31 @@
 import useToggle from '@core/hooks/useToggle'
 import Navbar from '@auth/components/layout/navbar'
 import Header from '@auth/components/layout/header'
-import AuthGuard from '@/features/auth/guards/auth-guard'
-import CompanyGuard from '@/features/company/guards/company.guard'
+import ActiveMemberGuard from '@/features/company/guards/active-member.guard'
+import AuthGuard from '@/features/auth/guards/auth.guard'
+import ChangeCompany from '@/features/company/components/change-company'
 
 type GuardLayoutProps = {
     children: React.ReactNode
 }
 
 function AuthGuardLayout({ children }: GuardLayoutProps) {
-    const [isNavbarOpen, toggleIsNavbarOpen] = useToggle()
-
     return (
         <AuthGuard>
-            <CompanyGuard>
-                <Navbar isOpen={isNavbarOpen} toggleIsOpen={toggleIsNavbarOpen} />
-                <div className='flex-grow'>
-                    <Header toggleIsNavbarOpen={toggleIsNavbarOpen} />
-                    <main className='max-w-[1200px] m-auto py-4 flex flex-col gap-4 px-2'>{children}</main>
+            <ActiveMemberGuard>
+                <div className='flex bg-background w-full flex-col  md:flex-row'>
+                    <div className='flex-shrink-0 p-2'>
+                        <ChangeCompany />
+                    </div>
+                    <div
+                        className='flex-grow bg-primary-foreground rounded-md
+                    border-s 
+                    '
+                    >
+                        {children}
+                    </div>
                 </div>
-            </CompanyGuard>
+            </ActiveMemberGuard>
         </AuthGuard>
     )
 }

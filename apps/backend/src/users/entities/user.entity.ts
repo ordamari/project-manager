@@ -13,6 +13,9 @@ export class User {
     @Column()
     password: string
 
+    @Column({ default: 0 })
+    lastUsedCompanyId: number
+
     @JoinTable()
     @OneToMany(() => Member, member => member.user, { cascade: true })
     members: Member[]

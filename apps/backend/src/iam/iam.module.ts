@@ -14,6 +14,7 @@ import { AccessTokenGuard } from './guards/access-token/access-token.guard'
 import { RefreshTokenIdsStorage } from './storage/refresh-token-ids.storage/refresh-token-ids.storage'
 import { RedisService } from 'src/redis/services/redis/redis.service'
 import redisConfig from 'src/redis/config/redis.config'
+import { SocketAccessTokenGuard } from './guards/socket-access-token/socket-access-token.guard'
 
 @Module({
     imports: [
@@ -37,5 +38,6 @@ import redisConfig from 'src/redis/config/redis.config'
         RefreshTokenIdsStorage,
     ],
     controllers: [AuthenticationController],
+    exports: [],
 })
 export class IamModule {}

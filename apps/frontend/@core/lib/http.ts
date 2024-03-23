@@ -25,6 +25,10 @@ export default {
 async function handleError(error: unknown): Promise<boolean> {
     if (Axios.isAxiosError(error)) {
         const axiosError = error as AxiosError
+        if (axiosError.response?.status === 401) {
+            window.location.href = '/auth/sign-in'
+            return true
+        }
     }
 
     return false

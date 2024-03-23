@@ -1,5 +1,6 @@
 type User = {
     email: string
+    lastUsedCompanyId: number
     id: number
 }
 

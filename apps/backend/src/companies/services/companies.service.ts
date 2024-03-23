@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, NotFoundException } from '@nestjs/common'
 import { CreateCompanyDto } from '../dto/create-company.dto'
 import { UpdateCompanyDto } from '../dto/update-company.dto'
 import { ActiveUserData } from 'src/iam/interfaces/active-user-data.interface'
@@ -7,13 +7,16 @@ import { Company } from '../entities/company.entity'
 import { Repository } from 'typeorm'
 import { Member } from '../entities/member.entity'
 import { User } from 'src/users/entities/user.entity'
+import { CompanyDataDto } from '../dto/company-data.dto'
+import { AuthenticationService } from 'src/iam/services/authentication/authentication.service'
 
 @Injectable()
 export class CompaniesService {
     constructor(
         @InjectRepository(Company) private readonly companyRepository: Repository<Company>,
         @InjectRepository(Member) private readonly memberRepository: Repository<Member>,
-        @InjectRepository(User) private readonly userRepository: Repository<User>
+        @InjectRepository(User) private readonly userRepository: Repository<User>,
+        private readonly authService: AuthenticationService
     ) {}
 
     async create(createCompanyDto: CreateCompanyDto, userData: ActiveUserData) {
@@ -32,8 +35,17 @@ export class CompaniesService {
         return await this.companyRepository.find({ where: { members: { user: { id: userData.sub } } } })
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} company`
+    async findOne(id: number, userData: ActiveUserData): Promise<CompanyDataDto> {
+        const company = await this.companyRepository.findOne({ where: { id } })
+        if (!company) throw new NotFoundException(`Company #${id} not found`)
+        const member = await this.memberRepository.findOne({
+            where: { company: { id }, user: { id: userData.sub } },
+            relations: ['company', 'user'],
+        })
+        if (!member) throw new NotFoundException(`You are not a member of company #${id}`)
+        await this.userRepository.update({ id: userData.sub }, { lastUsedCompanyId: id })
+        const memberAccessToken = await this.authService.createMemberAccessToken(member)
+        return { memberAccessToken, company }
     }
 
     async remove(id: number) {

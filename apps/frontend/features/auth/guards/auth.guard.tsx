@@ -1,8 +1,9 @@
 'use client'
 import { useEffect } from 'react'
-import useAuthStore from '../../store/auth.store'
-import AuthService from '../../services/auth.service'
+import useAuthStore from '../store/auth.store'
+import AuthService from '../services/auth.service'
 import { useRouter } from 'next/navigation'
+import LoadPage from '@/features/layout/components/load-page'
 
 type AuthGuardProps = {
     children: React.ReactNode
@@ -24,7 +25,7 @@ function AuthGuard({ children }: AuthGuardProps) {
         if (!loggedInUser) refreshToken()
     }, [loggedInUser])
 
-    if (!loggedInUser) return null
+    if (!loggedInUser) return <LoadPage />
     return children
 }
 

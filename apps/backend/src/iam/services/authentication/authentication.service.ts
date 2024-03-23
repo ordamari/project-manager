@@ -23,6 +23,8 @@ import {
 } from 'src/iam/storage/refresh-token-ids.storage/refresh-token-ids.storage'
 import { randomUUID } from 'crypto'
 import { RefreshTokenData } from 'src/iam/interfaces/refresh-token-data.interface'
+import { Member } from 'src/companies/entities/member.entity'
+import { ActiveMemberData } from 'src/iam/interfaces/active-member-data.interface'
 
 @Injectable()
 export class AuthenticationService {
@@ -147,6 +149,18 @@ export class AuthenticationService {
             }
         )
         return accessToken
+    }
+
+    async createMemberAccessToken(member: Member): Promise<string> {
+        const memberAccessToken = await this.signToken<Partial<ActiveMemberData>>(
+            member.id,
+            this.jwtConfiguration.accessTokenTtl,
+            {
+                companyId: member.company.id,
+                userId: member.user.id,
+            }
+        )
+        return memberAccessToken
     }
 
     private async signToken<T>(userId: number, expiresIn: number, payload?: T) {

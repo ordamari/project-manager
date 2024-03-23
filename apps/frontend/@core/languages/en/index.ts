@@ -1,3 +1,5 @@
+import { title } from 'process'
+
 const en = {
     direction: 'ltr',
     translation: {
@@ -16,10 +18,18 @@ const en = {
             description: 'Witch company do you want to work with?',
             'want-create': 'Want to create a new company?',
             'click-here': 'Click here',
+            'create-title': 'Create Company',
+            'create-description': 'Create a new company',
+            name: 'Name',
+            submit: 'Submit',
         },
         languages: {
             he: 'Hebrew',
             en: 'English',
+        },
+        message: {
+            placeholder: 'Write a message...',
+            submit: 'Send',
         },
         theme: {
             dark: 'Dark',
