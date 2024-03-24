@@ -9,7 +9,7 @@ export class Message {
     @Column()
     content: string
 
-    @Column()
+    @Column({ default: false })
     isDeleted: boolean
 
     @Column({

@@ -1,20 +1,25 @@
-import { Injectable } from '@nestjs/common'
+import { Inject, Injectable, forwardRef } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { ActiveUserData } from 'src/iam/interfaces/active-user-data.interface'
+import { ActiveMemberData } from 'src/iam/interfaces/active-member-data.interface'
 import { CreateMessageCompanyDto } from 'src/messages/dto/create-message-company.dto'
 import { Message } from 'src/messages/entities/message.entity'
+import { MessagesGateway } from 'src/messages/gateways/messages/messages.gateway'
 import { Repository } from 'typeorm'
 
 @Injectable()
 export class MessagesService {
-    constructor(@InjectRepository(Message) private readonly messageRepository: Repository<Message>) {}
+    constructor(
+        private readonly messagesGateway: MessagesGateway,
+        @InjectRepository(Message) private readonly messageRepository: Repository<Message>
+    ) {}
 
-    async createMessageCompany(createMessageDto: CreateMessageCompanyDto, userData: ActiveUserData) {
+    async createMessageCompany(createMessageDto: CreateMessageCompanyDto, memberData: ActiveMemberData) {
         const message = await this.messageRepository.save({
             ...createMessageDto,
-            sender: { id: userData.sub },
-            sendToCompany: { id: createMessageDto.receiverCompanyId },
+            sender: { id: memberData.sub },
+            receiverCompany: { id: memberData.companyId },
         })
+        this.messagesGateway.onReceiveCompanyMessage(message)
         return message
     }
 

@@ -19,13 +19,7 @@ function AuthGuardLayout({ children }: GuardLayoutProps) {
                     <div className='flex-shrink-0 p-2'>
                         <ChangeCompany />
                     </div>
-                    <div
-                        className='flex-grow bg-primary-foreground rounded-md
-                    border-s 
-                    '
-                    >
-                        {children}
-                    </div>
+                    <div className='flex-grow bg-primary-foreground rounded-md border-s'>{children}</div>
                 </div>
             </ActiveMemberGuard>
         </AuthGuard>

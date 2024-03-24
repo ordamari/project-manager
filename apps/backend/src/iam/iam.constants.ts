@@ -1,5 +1,7 @@
 export const COOKIES_ACCESS_TOKEN_KEY = 'access_token'
 export const COOKIES_REFRESH_TOKEN_KEY = 'refresh_token'
+export const COOKIES_MEMBER_TOKEN_KEY = 'member_token'
 export const REQUEST_USER_KEY = 'user'
+export const REQUEST_MEMBER_KEY = 'member'
 export const AUTH_TYPE_KEY = 'auth_type'
 export const PG_UNIQUE_VIOLATION_ERROR_CODE = '23505'

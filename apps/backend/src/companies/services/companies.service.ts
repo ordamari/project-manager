@@ -36,7 +36,7 @@ export class CompaniesService {
     }
 
     async findOne(id: number, userData: ActiveUserData): Promise<CompanyDataDto> {
-        const company = await this.companyRepository.findOne({ where: { id } })
+        const company = await this.companyRepository.findOne({ where: { id }, relations: ['messages'] })
         if (!company) throw new NotFoundException(`Company #${id} not found`)
         const member = await this.memberRepository.findOne({
             where: { company: { id }, user: { id: userData.sub } },
@@ -45,7 +45,7 @@ export class CompaniesService {
         if (!member) throw new NotFoundException(`You are not a member of company #${id}`)
         await this.userRepository.update({ id: userData.sub }, { lastUsedCompanyId: id })
         const memberAccessToken = await this.authService.createMemberAccessToken(member)
-        return { memberAccessToken, company }
+        return { memberAccessToken, company, memberId: member.id }
     }
 
     async remove(id: number) {

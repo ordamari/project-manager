@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import LoadPage from '@/features/layout/components/load-page'
 import useAuthStore from '@/features/auth/store/auth.store'
 import useSelectedCompany from '../hooks/useSelectedCompany'
-import MessageService from '@/features/messages/services/message-socket.service'
+import MessageSocketService from '@/features/messages/services/message-socket.service'
 import useActiveMemberStore from '../store/active-member.store'
 
 type ActiveMemberGuardProps = {
@@ -35,12 +35,12 @@ function ActiveMemberGuard({ children }: ActiveMemberGuardProps) {
         if (activeMember) {
             console.log('Connecting to socket')
 
-            MessageService.connect()
+            MessageSocketService.setup()
         } else {
-            MessageService.disconnect()
+            MessageSocketService.disconnect()
         }
         return () => {
-            MessageService.disconnect()
+            MessageSocketService.disconnect()
         }
     }, [activeMember])
 

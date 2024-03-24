@@ -8,17 +8,17 @@ const axios = Axios.create({
 })
 
 export default {
-    get(endpoint: string) {
-        return ajax(endpoint, 'GET', null)
+    get(endpoint: string, params: Record<string, unknown> = {}) {
+        return ajax(endpoint, 'GET', null, params)
     },
-    post(endpoint: string, data?: unknown) {
-        return ajax(endpoint, 'POST', data)
+    post(endpoint: string, data: unknown = null, params: Record<string, unknown> = {}) {
+        return ajax(endpoint, 'POST', data, params)
     },
-    put(endpoint: string, data?: unknown) {
-        return ajax(endpoint, 'PUT', data)
+    put(endpoint: string, data: unknown = null, params: Record<string, unknown> = {}) {
+        return ajax(endpoint, 'PUT', data, params)
     },
-    delete(endpoint: string, data?: unknown) {
-        return ajax(endpoint, 'DELETE', data)
+    delete(endpoint: string, data: unknown = null, params: Record<string, unknown> = {}) {
+        return ajax(endpoint, 'DELETE', data, params)
     },
 }
 
@@ -34,12 +34,13 @@ async function handleError(error: unknown): Promise<boolean> {
     return false
 }
 
-async function ajax(endpoint: string, method = 'GET', data: unknown = null) {
+async function ajax(endpoint: string, method = 'GET', data: unknown = null, params: Record<string, unknown> = {}) {
     try {
         const res = await axios({
             url: `${BASE_URL}${endpoint}`,
             method,
             data,
+            params,
         })
 
         return res.data

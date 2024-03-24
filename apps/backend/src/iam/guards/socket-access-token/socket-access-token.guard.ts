@@ -3,7 +3,7 @@ import { ConfigType } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 import { Socket } from 'socket.io'
 import jwtConfig from 'src/iam/config/jwt.config'
-import { COOKIES_ACCESS_TOKEN_KEY } from 'src/iam/iam.constants'
+import { COOKIES_ACCESS_TOKEN_KEY, REQUEST_MEMBER_KEY } from 'src/iam/iam.constants'
 import { ActiveMemberData } from 'src/iam/interfaces/active-member-data.interface'
 import { ActiveUserData } from 'src/iam/interfaces/active-user-data.interface'
 
@@ -35,7 +35,7 @@ export class SocketAccessTokenGuard implements CanActivate {
             issuer: jwtConfiguration.issuer,
             audience: jwtConfiguration.audience,
         })) as ActiveMemberData
-        socket.handshake.auth.user = payload
+        socket.handshake.auth[REQUEST_MEMBER_KEY] = payload
         return payload
     }
 }

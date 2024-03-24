@@ -10,6 +10,7 @@ import { ConfigType } from '@nestjs/config'
 import jwtConfig from 'src/iam/config/jwt.config'
 import {
     COOKIES_ACCESS_TOKEN_KEY,
+    COOKIES_MEMBER_TOKEN_KEY,
     COOKIES_REFRESH_TOKEN_KEY,
     PG_UNIQUE_VIOLATION_ERROR_CODE,
 } from 'src/iam/iam.constants'
@@ -45,6 +46,14 @@ export class AuthenticationService {
         })
 
         response.cookie(COOKIES_REFRESH_TOKEN_KEY, refreshToken, {
+            httpOnly: true,
+            secure: true,
+            sameSite: true,
+        })
+    }
+
+    addMemberTokenToCookie(response: Response, memberToken: string) {
+        response.cookie(COOKIES_MEMBER_TOKEN_KEY, memberToken, {
             httpOnly: true,
             secure: true,
             sameSite: true,
