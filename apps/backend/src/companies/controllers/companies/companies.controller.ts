@@ -1,13 +1,12 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from '@nestjs/common'
-import { CompaniesService } from '../services/companies.service'
-import { CreateCompanyDto } from '../dto/create-company.dto'
-import { UpdateCompanyDto } from '../dto/update-company.dto'
 import { ActiveUser } from 'src/iam/decorators/active-user.decorator'
 import { ActiveUserData } from 'src/iam/interfaces/active-user-data.interface'
 import { ApiTags } from '@nestjs/swagger'
-import { CompanyDataDto } from '../dto/company-data.dto'
 import { AuthenticationService } from 'src/iam/services/authentication/authentication.service'
 import { Response } from 'express'
+import { CompaniesService } from 'src/companies/services/companies/companies.service'
+import { CreateCompanyDto } from 'src/companies/dto/create-company.dto'
+import { CompanyDataDto } from 'src/companies/dto/company-data.dto'
 
 @ApiTags('companies')
 @Controller('companies')

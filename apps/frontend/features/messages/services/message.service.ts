@@ -12,9 +12,7 @@ class MessageService {
     }
 
     public static async getCompanyMessages(): Promise<Message[]> {
-        const companyId = useActiveMemberStore.getState().activeMember?.company.id
-
-        const messages = await http.get(`${this.ENDPOINT}/company-messages`, { companyId })
+        const messages = await http.get(`${this.ENDPOINT}/company-messages`)
         return messages
     }
 

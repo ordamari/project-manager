@@ -1,14 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
-import { CreateCompanyDto } from '../dto/create-company.dto'
-import { UpdateCompanyDto } from '../dto/update-company.dto'
 import { ActiveUserData } from 'src/iam/interfaces/active-user-data.interface'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Company } from '../entities/company.entity'
 import { Repository } from 'typeorm'
-import { Member } from '../entities/member.entity'
 import { User } from 'src/users/entities/user.entity'
-import { CompanyDataDto } from '../dto/company-data.dto'
 import { AuthenticationService } from 'src/iam/services/authentication/authentication.service'
+import { Company } from 'src/companies/entities/company.entity'
+import { Member } from 'src/companies/entities/member.entity'
+import { CreateCompanyDto } from 'src/companies/dto/create-company.dto'
+import { CompanyDataDto } from 'src/companies/dto/company-data.dto'
 
 @Injectable()
 export class CompaniesService {

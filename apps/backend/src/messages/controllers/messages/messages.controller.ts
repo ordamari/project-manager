@@ -3,6 +3,7 @@ import { ApiTags } from '@nestjs/swagger'
 import { ActiveMember } from 'src/iam/decorators/active-member.decorator'
 import { ActiveMemberData } from 'src/iam/interfaces/active-member-data.interface'
 import { CreateMessageCompanyDto } from 'src/messages/dto/create-message-company.dto'
+import { MessageDto } from 'src/messages/dto/message.dto'
 import { Message } from 'src/messages/entities/message.entity'
 import { MessagesService } from 'src/messages/services/messages/messages.service'
 
@@ -12,10 +13,8 @@ export class MessagesController {
     constructor(private readonly messagesService: MessagesService) {}
 
     @Get('company-messages')
-    async findCompanyMessages(@Query('companyId') companyId: number) {
-        console.log('companyId', companyId)
-
-        const messages = await this.messagesService.getCompanyMessages(companyId)
+    async findCompanyMessages(@ActiveMember() memberData: ActiveMemberData): Promise<MessageDto[]> {
+        const messages = await this.messagesService.getCompanyMessages(memberData.companyId)
         return messages
     }
 

@@ -5,8 +5,9 @@ import { UsersModule } from './users/users.module'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { IamModule } from './iam/iam.module'
 import { ConfigModule } from '@nestjs/config'
-import { CompaniesModule } from './companies/companies.module';
-import { MessagesModule } from './messages/messages.module';
+import { CompaniesModule } from './companies/companies.module'
+import { MessagesModule } from './messages/messages.module'
+import { MediaFilesModule } from './media-files/media-files.module'
 
 @Module({
     imports: [
@@ -26,6 +27,7 @@ import { MessagesModule } from './messages/messages.module';
         IamModule,
         CompaniesModule,
         MessagesModule,
+        MediaFilesModule,
     ],
     controllers: [AppController],
     providers: [AppService],
